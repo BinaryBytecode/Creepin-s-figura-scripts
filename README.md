@@ -1,1 +1,1 @@
-# Creepin-s-figura-scripts
+# Creepin's afk scripts
