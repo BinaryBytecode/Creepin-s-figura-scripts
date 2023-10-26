@@ -1,18 +1,20 @@
---local afk_text = "{playername} is AFK for {minutes}:{seconds}" -- params can be {playername}, {minutes}, {seconds}, {time}
+-- params can be {playername}, {minutes}, {seconds}, {time}
 local afk_text = "{playername}[{minutes}:{seconds}]"
-local not_afk_text = "{playername}[not afk]"
+local not_afk_text = "{playername}"
 local afk_delay = 15*20
 
---don't change this
+-- don't change this
 local afk_time = 0
 local old_time = 0
 
+-- just to set some vars up
 events.ENTITY_INIT:register(function()
     local position = user:getPos()
     local rotation = user:getRot()
 end)
 
-function pings.send_time(time)
+
+function pings.send_time(time, playername)
     local minutes = math.floor(time/1200)
     local seconds = math.floor((time/20)%60)
 
@@ -20,12 +22,12 @@ function pings.send_time(time)
         parsed_afk_text = string.gsub(not_afk_text, "{minutes}", minutes)
         parsed_afk_text = string.gsub(parsed_afk_text, "{seconds}", seconds)
         parsed_afk_text = string.gsub(parsed_afk_text, "{time}", time)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{playername}", player:getName())
+        parsed_afk_text = string.gsub(parsed_afk_text, "{playername}", playername)
     else
         parsed_afk_text = string.gsub(afk_text, "{minutes}", minutes)
         parsed_afk_text = string.gsub(parsed_afk_text, "{seconds}", seconds)
         parsed_afk_text = string.gsub(parsed_afk_text, "{time}", time)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{playername}", player:getName())
+        parsed_afk_text = string.gsub(parsed_afk_text, "{playername}", playername)
     end
 
     nameplate.LIST:setText(parsed_afk_text)
@@ -44,7 +46,7 @@ function events.TICK()
 
     if not (afk_time == 0) then
         if afk_time >= afk_delay then
-            pings.send_time(afk_time)
+            pings.send_time(afk_time, player:getName())
         end
         old_time = afk_time
     else
