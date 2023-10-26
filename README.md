@@ -3,3 +3,6 @@
 so for now, I created:
  - CreepinAFK
    - easily customizeable
+   - simple
+   - readable
+   - small size
