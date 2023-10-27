@@ -1,5 +1,5 @@
 -- params can be {playername}, {minutes}, {seconds}, {time}
-local afk_text = "§8{playername}[{minutes}:{seconds}]"
+local afk_text = "{playername}§7[{minutes}:{seconds}]"
 local not_afk_text = "{playername}"
 local afk_delay = 15*20
 
