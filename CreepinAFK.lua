@@ -17,17 +17,12 @@ end)
 function pings.send_time(time, playername)
     local minutes = math.floor(time/1200)
     local seconds = math.floor((time/20)%60)
+    local parsed_afk_text = ""
 
     if time == 0 then
-        parsed_afk_text = string.gsub(not_afk_text, "{minutes}", minutes)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{seconds}", seconds)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{time}", time)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{playername}", playername)
+        parsed_afk_text = not_afk_text:gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
     else
-        parsed_afk_text = string.gsub(afk_text, "{minutes}", minutes)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{seconds}", seconds)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{time}", time)
-        parsed_afk_text = string.gsub(parsed_afk_text, "{playername}", playername)
+        parsed_afk_text = afk_text:gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
     end
 
     nameplate.LIST:setText(parsed_afk_text)
@@ -35,25 +30,26 @@ function pings.send_time(time, playername)
 end
 
 function events.TICK()
-    old_position = position
-    old_rotation = rotation
-    position = user:getPos()
-    rotation = user:getRot()
+    if player:isLoaded() then
+        old_position = position
+        old_rotation = rotation
+        position = user:getPos()
+        rotation = user:getRot()
     
-    if position == old_position and rotation == old_rotation then 
-        afk_time = afk_time + 1 else afk_time = 0
-    end
-
-    if not (afk_time == 0) then
-        if afk_time >= afk_delay then
-            pings.send_time(afk_time, player:getName())
+        if position == old_position and rotation == old_rotation then
+            afk_time = afk_time + 1 else afk_time = 0
         end
-        old_time = afk_time
-    else
-        if not (old_time == 0) then
-            pings.send_time(0)
-        end
-        old_time = 0
-    end
 
+        if not (afk_time == 0) then
+            if afk_time >= afk_delay then
+                pings.send_time(afk_time, player:getName())
+            end
+            old_time = afk_time
+        else
+            if not (old_time == 0) then
+                pings.send_time(0, player:getName())
+            end
+            old_time = 0
+        end
+    end
 end
