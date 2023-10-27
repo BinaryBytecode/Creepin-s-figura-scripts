@@ -31,28 +31,30 @@ function pings.send_time(time, playername)
     nameplate.ENTITY:setText(parsed_afk_text)
 end
 
+local tick_counter = 0
 function events.TICK()
     if position == old_position and rotation == old_rotation then
         afk_time = afk_time + 1 else afk_time = 0
     end
 
-    if player:isLoaded() then
-        second_counter = 0
+    if player:isLoaded() and (tick_counter == 20) then
+        tick_counter = 0
         old_position = position
         old_rotation = rotation
         position = user:getPos()
         rotation = user:getRot()
 
-        if not (afk_time % 20 == 1) then
+        if not (afk_time == 0) then
+            --only show if is greater than the afk delay
             if afk_time >= afk_delay then
                 pings.send_time(afk_time, player:getName())
             end
-            old_time = afk_time
         else
             if not (old_time == 0) then
                 pings.send_time(0, player:getName())
             end
-            old_time = 0
         end
+        old_time = afk_time
     end
+    tick_counter = tick_counter + 1
 end
