@@ -1,5 +1,5 @@
 -- params can be {playername}, {minutes}, {seconds}, {time}
-local afk_text = "{playername}[{minutes}:{seconds}]"
+local afk_text = "&8{playername}[{minutes}:{seconds}]"
 local not_afk_text = "{playername}"
 local afk_delay = 15*20
 
@@ -19,8 +19,8 @@ function pings.send_time(time, playername)
     minutes = string.format("%02d", minutes)
     local seconds = math.floor((time/20)%60)
     seconds = string.format("%02d", seconds)
-    local parsed_afk_text = ""
 
+    local parsed_afk_text = ""
     if time == 0 then
         parsed_afk_text = not_afk_text:gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
     else
