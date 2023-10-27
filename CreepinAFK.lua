@@ -16,9 +16,9 @@ end)
 
 function pings.send_time(time, playername)
     local minutes = math.floor(time/1200)
-    minutes:format("%02d")
+    minutes = string.format("%02d", minutes)
     local seconds = math.floor((time/20)%60)
-    seconds:format("%02d")
+    seconds = string.format("%02d", seconds)
     local parsed_afk_text = ""
 
     if time == 0 then
