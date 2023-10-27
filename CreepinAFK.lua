@@ -32,17 +32,18 @@ function pings.send_time(time, playername)
 end
 
 function events.TICK()
+    if position == old_position and rotation == old_rotation then
+        afk_time = afk_time + 1 else afk_time = 0
+    end
+
     if player:isLoaded() then
+        second_counter = 0
         old_position = position
         old_rotation = rotation
         position = user:getPos()
         rotation = user:getRot()
-    
-        if position == old_position and rotation == old_rotation then
-            afk_time = afk_time + 1 else afk_time = 0
-        end
 
-        if not (afk_time == 0) then
+        if not (afk_time % 20 == 1) then
             if afk_time >= afk_delay then
                 pings.send_time(afk_time, player:getName())
             end
