@@ -1,17 +1,18 @@
 -- params can be {playername}, {minutes}, {seconds}, {time}
-local afk_text = "{playername}§7[{minutes}:{seconds}]"
+-- minecraft color codes can be used(example: §7 to make the following text grey)
+-- and \n can be used to add a new line for the enitnty nameplate
+local afk_text = "{playername} \n§7[{minutes}:{seconds}]"
 local not_afk_text = "{playername}"
 local afk_delay = 15*20
 
--- don't change this
+-- just to set some vars up
 local afk_time = 0
 local old_time = 0
-
--- just to set some vars up
-events.ENTITY_INIT:register(function()
+local tick_counter = 0
+function events.ENTITY_INIT()
     local position = user:getPos()
     local rotation = user:getRot()
-end)
+end
 
 
 function pings.send_time(time, playername)
@@ -28,10 +29,9 @@ function pings.send_time(time, playername)
     end
 
     nameplate.LIST:setText(parsed_afk_text)
-    nameplate.ENTITY:setText(parsed_afk_text)
+    nameplate.ENTITY:setText(parsed_afk_text:gsub("${badges}", ""))
 end
 
-local tick_counter = 0
 function events.TICK()
     if position == old_position and rotation == old_rotation then
         afk_time = afk_time + 1 else afk_time = 0
