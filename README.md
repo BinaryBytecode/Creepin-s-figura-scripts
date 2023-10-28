@@ -23,5 +23,7 @@ so, for line 4 and six there are code comments for help:
 -- minecraft color codes can be used(example: §7 to make the following text grey)
 -- and \n can be used to add a new line for the enitnty nameplate
 ```
+
+Here are some examples for the default config
 ![Example 1](images/CreepinAFK/example1.png "Example 1")
 ![Example 1](images/CreepinAFK/example1_tab.png "Example 1 tab")
