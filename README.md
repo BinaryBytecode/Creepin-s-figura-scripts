@@ -25,6 +25,7 @@ local afk_badge_color = vec(0.5, 0.5, 0.5)
 local afk_delay = 15*20
 ```
 As you can see, the config lines are 4, 5, 7, 8 and 10.
+<br>
 And there are code comments for help at line 1 to 3, line 6 and line 9.
 
 Here are some examples for the default config
