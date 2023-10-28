@@ -3,6 +3,7 @@
 -- and \n can be used to add a new line for the enitnty nameplate
 local afk_text = "{playername} \n§7[{minutes}:{seconds}]"
 local not_afk_text = "{playername}"
+-- the delay until the timer and text shows(in ticks)
 local afk_delay = 15*20
 
 -- just to set some vars up
