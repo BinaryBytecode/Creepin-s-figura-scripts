@@ -4,8 +4,8 @@
 local afk_text = "{playername} \n§7[{minutes}:{seconds}]"
 local not_afk_text = "{playername}"
 -- the badge color when you're afk or not
-local badge_color = vec(0, 0, 0)
-local afk_badge_color = vec(1, 1, 1)
+local badge_color = vec(1, 0, 0)
+local afk_badge_color = vec(0.5, 0.5, 0.5)
 -- the delay until the timer and text shows(in ticks)
 local afk_delay = 15*20
 
