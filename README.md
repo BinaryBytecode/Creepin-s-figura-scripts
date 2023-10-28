@@ -25,5 +25,6 @@ so, for line 4 and six there are code comments for help:
 ```
 
 Here are some examples for the default config
+<br>
 ![Example 1](images/CreepinAFK/example1.png "Example 1")
 ![Example 1](images/CreepinAFK/example1_tab.png "Example 1 tab")
