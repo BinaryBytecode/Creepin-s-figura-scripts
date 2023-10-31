@@ -32,7 +32,7 @@ function pings.send_time(time, playername)
         parsed_afk_text = not_afk_text:gsub("{hours}", hours):gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
         avatar:setColor(badge_color)
     else
-        parsed_afk_text = afk_text:gsub("{hours}", minutes):gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
+        parsed_afk_text = afk_text:gsub("{hours}", hours):gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
         avatar:setColor(afk_badge_color)
     end
 
