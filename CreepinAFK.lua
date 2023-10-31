@@ -1,7 +1,7 @@
 -- params can be {playername}, {hours}, {minutes}, {seconds}, {time}
 -- minecraft color codes can be used(example: §7 to make the following text grey)
 -- and \n can be used to add a new line for the enitnty nameplate
-local afk_text = "{playername} \n§7[{minutes}:{seconds}]"
+local afk_text = "{playername} \n§7[{hours}:{minutes}:{seconds}]"
 local not_afk_text = "{playername}"
 -- the badge color when you're afk or not
 local badge_color = vec(1, 0, 0)
