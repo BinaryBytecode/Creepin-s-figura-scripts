@@ -1,4 +1,4 @@
--- params can be {playername}, {minutes}, {seconds}, {time}
+-- params can be {playername}, {hours}, {minutes}, {seconds}, {time}
 -- minecraft color codes can be used(example: §7 to make the following text grey)
 -- and \n can be used to add a new line for the enitnty nameplate
 local afk_text = "{playername} \n§7[{minutes}:{seconds}]"
@@ -20,6 +20,8 @@ end
 
 
 function pings.send_time(time, playername)
+    local hours = math.floor(time/72000)
+    hours = string.format("%02d", minutes)
     local minutes = math.floor(time/1200)
     minutes = string.format("%02d", minutes)
     local seconds = math.floor((time/20)%60)
@@ -27,10 +29,10 @@ function pings.send_time(time, playername)
 
     local parsed_afk_text = ""
     if time == 0 then
-        parsed_afk_text = not_afk_text:gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
+        parsed_afk_text = not_afk_text:gsub("{hours}", hours):gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
         avatar:setColor(badge_color)
     else
-        parsed_afk_text = afk_text:gsub("{minutes}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
+        parsed_afk_text = afk_text:gsub("{hours}", minutes):gsub("{hours}", minutes):gsub("{seconds}", seconds):gsub("{time}", time):gsub("{playername}", playername)
         avatar:setColor(afk_badge_color)
     end
 
