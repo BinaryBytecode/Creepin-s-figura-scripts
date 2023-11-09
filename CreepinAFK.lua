@@ -3,9 +3,18 @@
 -- and \n can be used to add a new line for the enitnty nameplate
 local afk_text = "{playername} \n§7[{hours}:{minutes}:{seconds}]"
 local not_afk_text = "{playername}"
+
 -- the badge color when you're afk or not
 local badge_color = vec(1, 0, 0)
 local afk_badge_color = vec(0.5, 0.5, 0.5)
+
+--animations
+anims = {
+    start = animations.model.start_afk,
+    loop = animations.model.loop_afk,
+    fin = animations.model.stop_afk
+}
+
 -- the delay until the timer and text shows(in ticks)
 local afk_delay = 15*20
 
