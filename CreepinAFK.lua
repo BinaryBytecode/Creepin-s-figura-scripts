@@ -10,9 +10,9 @@ local afk_badge_color = vec(0.5, 0.5, 0.5)
 
 --animations
 anims = {
-    start = animations.model.start_afk,
-    loop = animations.model.loop_afk,
-    fin = animations.model.stop_afk
+    start = animations.afk.start_afk,
+    loop = animations.afk.loop_afk,
+    fin = animations.afk.stop_afk
 }
 
 -- the delay until the timer and text shows(in ticks)
